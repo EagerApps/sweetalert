@@ -1,0 +1,50 @@
+{
+  "resources": {
+    "head": [
+      {
+        "type": "script",
+        "src": "./lib/sweet-alert.js"
+      },
+      {
+        "type": "style",
+        "src": "./lib/sweet-alert.css"
+      },
+      {
+        "type": "script",
+        "if": "options.replaceNativeAlert",
+        "contents": "window.alert = window.swal;"
+      },
+      {
+        "type": "script",
+        "if": "options.showWelcomeAlert",
+        "contents": "(function(){ var ready = function(fn) {if (document.readyState != 'loading') {fn(); } else if (document.addEventListener) {document.addEventListener('DOMContentLoaded', fn); } else {document.attachEvent('onreadystatechange', function() {if (document.readyState != 'loading') {fn(); } }) } }; ready(function(){ swal(INSTALL_OPTIONS.welcomeText); }); })();"
+      }
+    ]
+  },
+  "options": {
+    "properties": {
+      "replaceNativeAlert": {
+        "order": 1,
+        "title": "Use Sweet Alert in place of the browser default alert",
+        "type": "boolean",
+        "default": true
+      },
+      "showWelcomeAlert": {
+        "order": 2,
+        "title": "Show a Sweet Alert to welcome visitors to your page",
+        "type": "boolean",
+        "default": false
+      },
+      "welcomeText": {
+        "order": 3,
+        "showIf": {
+          "showWelcomeAlert": true
+        },
+        "title": "Welcome alert text",
+        "type": "string",
+        "format": "textarea",
+        "default": "Welcome to my site!"
+      }
+    }
+  }
+}
